@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import WriteFile from "./components/WriteFile.js";
 import PageTypeDropDown from "./components/PageTypeDropDown";
+import QuestionAnswerTextForm from "./components/QuestionAnswerTextForm"
 import TextField from "./components/TextField";
 import { Form, Text, Select, Option } from "informed";
 class App extends Component {
@@ -27,7 +28,6 @@ class App extends Component {
     event.preventDefault();
   };
   handleNewPage = event => {
-    //  this.setState({page})
     let newPagesArray = this.state.pages;
     newPagesArray.push(this.state.currentPage);
     this.setState({ pages: newPagesArray, currentPage: {} }, () =>
@@ -36,23 +36,29 @@ class App extends Component {
     event.preventDefault();
   };
   render() {
+    let {currentPage} = this.state;
     return (
       <div>
         <Form id="simple-form">
+        
+
+          <PageTypeDropDown changeState={this.changeState} />
+          {/* <br/>
+          
           <TextField
             labelText={"Title:"}
             field={"title"}
             stateKey={"title"}
             changeState={this.changeState}
           />
-          <TextField
-            labelText={"Background Color"}
-            field={"background-color"}
-            stateKey={"backgroundColor"}
-            changeState={this.changeState}
-          />
+           <br/> */}
         
-          <PageTypeDropDown changeState={this.changeState} />
+
+          <br />
+          <hr/>
+          <div style={{ height: "100px" }} />
+          {currentPage.pageType === 'textAnswer' ? <QuestionAnswerTextForm changeState={this.changeState}/> :<span/>}
+          <div style={{ height: "200px" }} />
           <button
             type="submit"
             onClick={e => {
@@ -61,8 +67,7 @@ class App extends Component {
           >
             Add Page
           </button>
-          <br />
-          <div style={{ height: "200px" }} />
+          <br/>
           <button
             type="submit"
             onClick={e => {
