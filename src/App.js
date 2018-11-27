@@ -48,7 +48,7 @@ class App extends Component {
             field="background-color"
             id="color-field"
             onChange={e => {
-              this.changeState("Background Color", e);
+              this.changeState("backgroundColor", e);
             }}
           />
           <button
