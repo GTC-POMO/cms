@@ -3,17 +3,23 @@ import React, { Component } from "react";
 import TextField from './TextField'
 import "../App.css";
 
-class QuestionAnswerTextForm extends Component {
+class Interstitial extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
   render() {
-    const {changeState, question} = this.props
+    const {changeState} = this.props
     return (
       <React.Fragment>
-        <h2>Text Answer Page</h2>
-        <TextField changeState={this.props.changeState} labelText={"Question"} field={"question"} stateKey={'title'}/>
+        <h2>Interstitial Options</h2>
+        <TextField
+          changeState={changeState}
+          labelText={"Title:"}
+          field={"title"}
+          stateKey={"title"}
+        />
+        <TextField changeState={changeState} labelText={"Timer or button to advance"} field={"timer-or-button"} stateKey={'timerOrButton'}/>
         <br/>
         <TextField
             labelText={"Background Color"}
@@ -26,4 +32,4 @@ class QuestionAnswerTextForm extends Component {
   }
 }
 
-export default QuestionAnswerTextForm;
+export default Interstitial;

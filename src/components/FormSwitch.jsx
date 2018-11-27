@@ -1,8 +1,7 @@
-import { Form, Text, Select, Option } from "informed";
 import React, { Component } from "react";
 import QuestionAnswerTextForm from "./QuestionAnswerTextForm"
 import MultipleChoiceButtonsForm from "./MultipleChoiceButtonsForm"
-import TextField from "./TextField";
+import Interstitial from "./Interstitial"
 import "../App.css";
 
 class FormSwitch extends Component {
@@ -11,16 +10,21 @@ class FormSwitch extends Component {
     this.state = {};
   }
   render() {
-    const {pageType } = this.props;
+    const {pageType, changeState } = this.props;
     return (
       <React.Fragment>
         {pageType === "textAnswer" ? (
-          <QuestionAnswerTextForm changeState={this.changeState} />
+          <QuestionAnswerTextForm changeState={changeState} />
         ) : (
           <span />
         )}
         {pageType === "multipleChoiceButtons" ? (
-          <MultipleChoiceButtonsForm changeState={this.changeState} />
+          <MultipleChoiceButtonsForm changeState={changeState} />
+        ) : (
+          <span />
+        )}
+         {pageType === "interstitial" ? (
+          <Interstitial changeState={changeState} />
         ) : (
           <span />
         )}

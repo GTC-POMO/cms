@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import "./App.css";
 import WriteFile from "./components/WriteFile.js";
 import PageTypeDropDown from "./components/PageTypeDropDown";
-import FormSwitch from './components/FormSwitch'
-import QuestionAnswerTextForm from "./components/QuestionAnswerTextForm"
-import MultipleChoiceButtonsForm from "./components/MultipleChoiceButtonsForm"
-import TextField from "./components/TextField";
+import FormSwitch from "./components/FormSwitch";
 import { Form, Text, Select, Option } from "informed";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +18,6 @@ class App extends Component {
   changeState = (key, value) => {
     let prevObject = this.state.currentPage;
     prevObject[key] = value.target.value;
-
     this.setState({ currentPage: prevObject }, () => {
       console.log(this.state);
     });
@@ -37,16 +34,17 @@ class App extends Component {
     );
     event.preventDefault();
   };
+
   render() {
-    let {currentPage} = this.state;
+    let { currentPage } = this.state;
     return (
       <div>
         <Form id="simple-form">
           <PageTypeDropDown changeState={this.changeState} />
           <br />
-          <hr/>
+          <hr />
           <div style={{ height: "100px" }} />
-          <FormSwitch pageType={currentPage.pageType}/>
+          <FormSwitch pageType={currentPage.pageType} changeState={this.changeState}  />
           <div style={{ height: "200px" }} />
           <button
             type="submit"
@@ -56,7 +54,7 @@ class App extends Component {
           >
             Add Page
           </button>
-          <br/>
+          <br />
           <button
             type="submit"
             onClick={e => {
