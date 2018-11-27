@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import WriteFile from "./components/WriteFile.js";
-import { Form, Text } from "informed";
+import PageTypeDropDown from "./components/PageTypeDropDown";
+import TextField from "./components/TextField";
+import { Form, Text, Select, Option } from "informed";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -26,31 +28,31 @@ class App extends Component {
   };
   handleNewPage = event => {
     //  this.setState({page})
-   let newPagesArray = this.state.pages;
-   newPagesArray.push(this.state.currentPage);
-   this.setState({pages:newPagesArray, currentPage:{}}, ()=> console.log(this.state))
+    let newPagesArray = this.state.pages;
+    newPagesArray.push(this.state.currentPage);
+    this.setState({ pages: newPagesArray, currentPage: {} }, () =>
+      console.log(this.state)
+    );
     event.preventDefault();
   };
   render() {
     return (
       <div>
         <Form id="simple-form">
-          <label htmlFor="name-field">Title:</label>
-          <Text
-            field="title"
-            id="title-field"
-            onChange={e => {
-              this.changeState("title", e);
-            }}
+          <TextField
+            labelText={"Title:"}
+            field={"title"}
+            stateKey={"title"}
+            changeState={this.changeState}
           />
-          <label htmlFor="name-field">Background Color</label>
-          <Text
-            field="background-color"
-            id="color-field"
-            onChange={e => {
-              this.changeState("backgroundColor", e);
-            }}
+          <TextField
+            labelText={"Background Color"}
+            field={"background-color"}
+            stateKey={"backgroundColor"}
+            changeState={this.changeState}
           />
+        
+          <PageTypeDropDown changeState={this.changeState} />
           <button
             type="submit"
             onClick={e => {

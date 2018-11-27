@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "antd": "^3.10.9",
     "file-saver": "^2.0.0",
     "informed": "^1.10.9",
     "jsonfile": "^5.0.0",
