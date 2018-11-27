@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "./App.css";
 import WriteFile from "./components/WriteFile.js";
 import PageTypeDropDown from "./components/PageTypeDropDown";
+import FormSwitch from './components/FormSwitch'
 import QuestionAnswerTextForm from "./components/QuestionAnswerTextForm"
+import MultipleChoiceButtonsForm from "./components/MultipleChoiceButtonsForm"
 import TextField from "./components/TextField";
 import { Form, Text, Select, Option } from "informed";
 class App extends Component {
@@ -40,24 +42,11 @@ class App extends Component {
     return (
       <div>
         <Form id="simple-form">
-        
-
           <PageTypeDropDown changeState={this.changeState} />
-          {/* <br/>
-          
-          <TextField
-            labelText={"Title:"}
-            field={"title"}
-            stateKey={"title"}
-            changeState={this.changeState}
-          />
-           <br/> */}
-        
-
           <br />
           <hr/>
           <div style={{ height: "100px" }} />
-          {currentPage.pageType === 'textAnswer' ? <QuestionAnswerTextForm changeState={this.changeState}/> :<span/>}
+          <FormSwitch pageType={currentPage.pageType}/>
           <div style={{ height: "200px" }} />
           <button
             type="submit"
