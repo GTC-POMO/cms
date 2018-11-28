@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import QuestionAnswerTextForm from "./QuestionAnswerTextForm"
-import MultipleChoiceButtonsForm from "./MultipleChoiceButtonsForm"
-import Interstitial from "./Interstitial"
+import QuestionAnswerTextForm from "./QuestionAnswerTextForm";
+import MultipleChoiceButtonsForm from "./MultipleChoiceButtonsForm";
+import Interstitial from "./Interstitial";
 import "../App.css";
 
 class FormSwitch extends Component {
@@ -9,27 +9,22 @@ class FormSwitch extends Component {
     super(props);
     this.state = {};
   }
+
+  formSwitch = () => {
+    const { pageType, changeState } = this.props;
+    switch (pageType) {
+      case "textAnswer":
+        return <QuestionAnswerTextForm changeState={changeState} />;
+      case "multipleChoiceButtons":
+        return <MultipleChoiceButtonsForm changeState={changeState} />;
+      case "interstitial":
+        return <Interstitial changeState={changeState} />;
+      default:
+        return <div>Pick a page type</div>;
+    }
+  };
   render() {
-    const {pageType, changeState } = this.props;
-    return (
-      <React.Fragment>
-        {pageType === "textAnswer" ? (
-          <QuestionAnswerTextForm changeState={changeState} />
-        ) : (
-          <span />
-        )}
-        {pageType === "multipleChoiceButtons" ? (
-          <MultipleChoiceButtonsForm changeState={changeState} />
-        ) : (
-          <span />
-        )}
-         {pageType === "interstitial" ? (
-          <Interstitial changeState={changeState} />
-        ) : (
-          <span />
-        )}
-      </React.Fragment>
-    );
+    return <React.Fragment>{this.formSwitch()}</React.Fragment>;
   }
 }
 
