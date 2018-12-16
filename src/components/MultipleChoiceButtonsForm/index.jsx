@@ -2,6 +2,7 @@ import { Form, Text, Select, Option } from "informed";
 import React, { Component } from "react";
 import TextField from "../TextField";
 import "./style.css";
+import { AppConsumer } from "../App/context";
 
 class MultipleChoiceButtonsForm extends Component {
   constructor(props) {
@@ -9,24 +10,27 @@ class MultipleChoiceButtonsForm extends Component {
     this.state = {};
   }
   render() {
-    const { changeState } = this.props;
     return (
-      <React.Fragment>
-        <h2>Multiple Choice Buttons Form</h2>
-        <TextField
-          changeState={changeState}
-          labelText={"Question"}
-          field={"question"}
-          stateKey={"title"}
-        />
-        <br />
-        <TextField
-          labelText={"Amount of Choices"}
-          field={"amount-of-choices"}
-          stateKey={"amountOfChoices"}
-          changeState={changeState}
-        />
-      </React.Fragment>
+      <AppConsumer>
+        {context => {
+          return <div>
+            <h2>Multiple Choice Buttons Form</h2>
+            <TextField
+              changeState={context.changeState}
+              labelText={"Question"}
+              field={"question"}
+              stateKey={"title"}
+            />
+            <br />
+            <TextField
+              labelText={"Amount of Choices"}
+              field={"amount-of-choices"}
+              stateKey={"amountOfChoices"}
+              changeState={context.changeState}
+            />
+          </div>;
+        }}
+      </AppConsumer>
     );
   }
 }

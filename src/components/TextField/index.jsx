@@ -1,25 +1,32 @@
 import { Form, Text, Select, Option } from "informed";
 import React, { Component } from "react";
 import "./style.css";
+import { AppConsumer } from "../App/context";
 
 class TextField extends Component {
   constructor(props) {
     super(props);
-    this.state = {  };
+    this.state = {};
   }
   render() {
-      const {changeState, labelText, field, stateKey} = this.props
+    const { labelText, field, stateKey } = this.props;
     return (
-      <React.Fragment>
-          <label>{labelText}</label>
-          <Text
-            field={field}
-            id={`${field}-field`}
-            onChange={e => {
-              this.props.changeState(stateKey, e);
-            }}
-          />
-      </React.Fragment>
+      <AppConsumer>
+        {context => {
+          return (
+            <React.Fragment>
+              <label>{labelText}</label>
+              <Text
+                field={field}
+                id={`${field}-field`}
+                onChange={e => {
+                  context.changeCurrentPageState(stateKey, e);
+                }}
+              />
+            </React.Fragment>
+          );
+        }}
+      </AppConsumer>
     );
   }
 }

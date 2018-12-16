@@ -8,11 +8,7 @@ class CreatePage extends Component {
   render() {
     return (
       <React.Fragment>
-        <CreatePageForm
-          currentPage={this.props.currentPage}
-          changeState={this.props.changeState}
-          handleNewPage={this.props.handleNewPage}
-        />
+        <CreatePageForm/>
       </React.Fragment>
     );
   }

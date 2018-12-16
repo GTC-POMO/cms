@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import "./App.css";
-import WriteFile from "./functions/WriteFile.js";
-import CreatePage from "./components/CreatePage/index";
-import CreateSite from "./components/CreateSite/index";
-import PageTypeDropDown from "./components/PageTypeDropDown/";
-import FormSwitch from "./components/FormSwitch/";
-import { Form, Text, Select, Option } from "informed";
+import WriteFile from "../../functions/WriteFile.js";
+import CreatePage from "../CreatePage/index";
+import CreateSite from "../CreateSite/index";
+import { AppProvider } from "./context";
+
 const StateContext = React.createContext(null);
 class App extends Component {
   constructor(props) {
@@ -15,15 +14,15 @@ class App extends Component {
       currentPageIndex: 1,
       currentPage: {},
       buildPage: {},
-      website: {}
+      website: {},
+    
     };
   }
 
   writeFile = () => {
     WriteFile(this.state);
   };
-
-  changeState = (key, value) => {
+  changeCurrentPageState = (key, value) => {
     let prevObject = this.state.currentPage;
     prevObject[key] = value.target.value;
     this.setState({ currentPage: prevObject }, () => {
@@ -44,22 +43,25 @@ class App extends Component {
   };
 
   render() {
-    let { currentPage } = this.state;
     return (
-      <div>
+      <AppProvider
+        value={{
+          state: this.state,
+          handleNewPage: this.handleNewPage,
+          createSiteSubmit: this.createSiteSubmit,
+          changeCurrentPageState: this.changeCurrentPageState,
+          writeFile: this.writeFile
+        }}
+      >
         <div className="flex-row width-100vw height-100vh">
           <div className="flex-1">
-            <CreatePage
-              currentPage={currentPage}
-              changeState={this.changeState}
-              handleNewPage={this.handleNewPage}
-            />
+            <CreatePage/>
           </div>
           <div className="flex-1">
             <CreateSite createSiteSubmit={this.createSiteSubmit} />
           </div>
         </div>
-      </div>
+      </AppProvider>
     );
   }
 }
