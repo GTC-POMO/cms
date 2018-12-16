@@ -6,10 +6,10 @@ class CreateSite extends Component {
     }
 
     render () {
-        const{createSiteSubmit}= this.props
+        
         return(
             <React.Fragment>
-                <CreateSiteForm createSiteSubmit={createSiteSubmit}/>
+                <CreateSiteForm/>
 
             </React.Fragment>
         )

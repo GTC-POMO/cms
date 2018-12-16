@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import "./App.css";
 import WriteFile from "../../functions/WriteFile.js";
 import CreatePage from "../CreatePage/index";
 import CreateSite from "../CreateSite/index";
 import { AppProvider } from "./context";
+import "./App.css";
 
-const StateContext = React.createContext(null);
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +14,6 @@ class App extends Component {
       currentPage: {},
       buildPage: {},
       website: {},
-    
     };
   }
 
@@ -58,7 +56,7 @@ class App extends Component {
             <CreatePage/>
           </div>
           <div className="flex-1">
-            <CreateSite createSiteSubmit={this.createSiteSubmit} />
+            <CreateSite />
           </div>
         </div>
       </AppProvider>
