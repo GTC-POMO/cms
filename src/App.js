@@ -1,14 +1,22 @@
 import React, { Component } from "react";
 import "./App.css";
 import WriteFile from "./functions/WriteFile.js";
+import CreatePage from "./components/CreatePage/index";
+import CreateSite from "./components/CreateSite/index";
 import PageTypeDropDown from "./components/PageTypeDropDown/";
 import FormSwitch from "./components/FormSwitch/";
 import { Form, Text, Select, Option } from "informed";
-const StateContext = React.createContext(null)
+const StateContext = React.createContext(null);
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { pages: [], currentPageIndex: 1, currentPage: {} };
+    this.state = {
+      pages: [],
+      currentPageIndex: 1,
+      currentPage: {},
+      buildPage: {},
+      website: {}
+    };
   }
 
   writeFile = () => {
@@ -22,7 +30,7 @@ class App extends Component {
       console.log(this.state);
     });
   };
-  handleFormSubmit = event => {
+  createSiteSubmit = event => {
     this.writeFile(this.state);
     event.preventDefault();
   };
@@ -39,34 +47,14 @@ class App extends Component {
     let { currentPage } = this.state;
     return (
       <div>
-        <Form id="simple-form">
-          <PageTypeDropDown changeState={this.changeState} />
-          <br />
-          <hr />
-          <div style={{ height: "100px" }} />
-          <FormSwitch
-            pageType={currentPage.pageType}
-            changeState={this.changeState}
-          />
-          <div style={{ height: "200px" }} />
-          <button
-            type="submit"
-            onClick={e => {
-              this.handleNewPage(e);
-            }}
-          >
-            Add Page
-          </button>
-          <br />
-          <button
-            type="submit"
-            onClick={e => {
-              this.handleFormSubmit(e);
-            }}
-          >
-            Create Website
-          </button>
-        </Form>
+        <div className="flex-row width-100vw height-100vh">
+          <div className='flex-1'>
+            <CreatePage currentPage={currentPage} />
+          </div>
+          <div className='flex-1'>
+            <CreateSite createSiteSubmit={this.createSiteSubmit} />
+          </div>
+        </div>
       </div>
     );
   }
