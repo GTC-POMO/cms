@@ -9,35 +9,27 @@ class CreatePageForm extends Component {
   }
 
   render() {
-      const {currentPage} = this.props
+      const {currentPage, handleNewPage, changeState} = this.props
     return (
       <Form id="simple-form">
-        <PageTypeDropDown changeState={this.changeState} />
+        <PageTypeDropDown changeState={changeState} />
         <br />
         <hr />
         <div style={{ height: "100px" }} />
         <FormSwitch
           pageType={currentPage.pageType}
-          changeState={this.changeState}
+          changeState={changeState}
         />
         <div style={{ height: "200px" }} />
         <button
           type="submit"
           onClick={e => {
-            this.handleNewPage(e);
+            handleNewPage(e);
           }}
         >
           Add Page
         </button>
         <br />
-        {/* <button
-          type="submit"
-          onClick={e => {
-            this.handleFormSubmit(e);
-          }}
-        >
-          Create Website
-        </button> */}
       </Form>
     );
   }

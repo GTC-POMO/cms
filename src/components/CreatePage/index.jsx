@@ -1,17 +1,20 @@
-import React, {Component} from 'react'
-import CreatePageForm from './CreatePageForm/'
+import React, { Component } from "react";
+import CreatePageForm from "./CreatePageForm/";
 class CreatePage extends Component {
-constructor(props){
+  constructor(props) {
     super(props);
+  }
 
+  render() {
+    return (
+      <React.Fragment>
+        <CreatePageForm
+          currentPage={this.props.currentPage}
+          changeState={this.props.changeState}
+          handleNewPage={this.props.handleNewPage}
+        />
+      </React.Fragment>
+    );
+  }
 }
-
-render(){
-    return(
-        <React.Fragment>
-            <CreatePageForm currentPage={this.props.currentPage}/>
-        </React.Fragment>
-    )
-}
-}
-export default CreatePage
+export default CreatePage;

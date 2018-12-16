@@ -8,12 +8,13 @@ class PageTypeDropDown extends Component {
     this.state = {  };
   }
   render() {
+    const {changeState} = this.props
     return (
       <React.Fragment>
         <label htmlFor="page-type-field">Page Type</label>
         <Select
           onChange={e => {
-            this.props.changeState("pageType", e);
+            changeState("pageType", e);
           }}
           field="status"
           id="select-status"

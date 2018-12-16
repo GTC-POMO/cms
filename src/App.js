@@ -48,10 +48,14 @@ class App extends Component {
     return (
       <div>
         <div className="flex-row width-100vw height-100vh">
-          <div className='flex-1'>
-            <CreatePage currentPage={currentPage} />
+          <div className="flex-1">
+            <CreatePage
+              currentPage={currentPage}
+              changeState={this.changeState}
+              handleNewPage={this.handleNewPage}
+            />
           </div>
-          <div className='flex-1'>
+          <div className="flex-1">
             <CreateSite createSiteSubmit={this.createSiteSubmit} />
           </div>
         </div>
