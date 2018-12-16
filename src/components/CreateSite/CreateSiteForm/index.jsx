@@ -8,15 +8,15 @@ class CreateSiteForm extends Component {
   render() {
     return (
       <AppConsumer>
-        {context => {
-          <button
+        {context => {        
+          return (<button
             type="submit"
             onClick={e => {
               context.createSiteSubmit(e);
             }}
           >
             Create Website
-          </button>;
+          </button>);
         }}
       </AppConsumer>
     );
